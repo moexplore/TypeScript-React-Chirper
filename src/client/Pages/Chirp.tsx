@@ -6,7 +6,7 @@ const Chirp = () => {
   const [chirp, setChirp] = useState({
     id: null,
     name: "",
-    msg: "",
+    content: "",
   });
   const { chirpid }: { chirpid: string } = useParams();
 
@@ -14,7 +14,7 @@ const Chirp = () => {
     setChirp({
       id: chirp.id,
       name: e.target.value,
-      msg: chirp.msg,
+      content: chirp.content,
     });
   };
 
@@ -22,7 +22,7 @@ const Chirp = () => {
     setChirp({
       id: chirp.id,
       name: chirp.name,
-      msg: e.target.value,
+      content: e.target.value,
     });
   };
 
@@ -51,7 +51,7 @@ const Chirp = () => {
   return (
     <div className=" card col-md-6" key={`chirp-card-${chirp.id}`}>
       <input className="card-header" onChange = {handleName} value={chirp.name}></input>
-      <textarea className="card-body" onChange = {handleMessage} value={chirp.msg}></textarea>
+      <textarea className="card-body" onChange = {handleMessage} value={chirp.content}></textarea>
       <button type="button" onClick = {updateMyChirp} className="btn btn-primary">
         Update Your Chirp
       </button>

@@ -11,8 +11,9 @@ const Chirps = () => {
       .then((chirps) => setChirps(chirps));
   }, []);
 
-  const deleteChirp = () => {
-    fetch(`/api/chirps/${chirps}`, {
+  const deleteChirp = (chirpid) => {
+    
+    fetch(`/api/chirps/${chirpid}`, {
       method: "DELETE",
     })
       .then((response) => console.log(response))
@@ -33,26 +34,13 @@ const Chirps = () => {
         {chirps.map((chirp) => (
           <div className=" card col-md-6 mt-3" key={`chirp-card-${chirp.id}`}>
             <h1 className="card-header">{chirp.name}</h1>
-            <p className="card-body">{chirp.msg}</p>
+            <p className="card-body">{chirp.content}</p>
             <Link to={`/chirps/${chirp.id}`} className="btn btn-success">
               Edit This Chirp
             </Link>
             <button
-              type="submit"
-              onClick={() => {
-                fetch(`/api/chirps/${chirp.id}`, {
-                  method: "DELETE",
-                })
-                  .then((response) => console.log(response))
-                  .catch((err) => {
-                    err = new Error("Failed to Fetch");
-                    console.log(err);
-                  });
-
-                fetch(`/api/chirps`)
-                  .then((chirps) => chirps.json())
-                  .then((chirps) => setChirps(chirps));
-              }}
+              type="button"
+              onClick={() => deleteChirp(chirp.id)}
               className="btn btn-danger mt-3"
             >
               Delete Chirp
