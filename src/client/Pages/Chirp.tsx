@@ -53,7 +53,7 @@ const Chirp = () => {
       <input className="card-header" onChange = {handleName} value={chirp.name}></input>
       <textarea className="card-body" onChange = {handleMessage} value={chirp.content}></textarea>
       <button type="button" onClick = {updateMyChirp} className="btn btn-primary">
-        Update Your Chirp
+        Update Chirp
       </button>
     </div>
   );
